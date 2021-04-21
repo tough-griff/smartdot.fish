@@ -1,0 +1,23 @@
+name: CI
+
+on: push
+
+jobs:
+  test:
+    name: Test installation with fisher
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install fish
+        run: |
+          sudo apt-add-repository -yn ppa:fish-shell/release-3
+          sudo apt-get update
+          sudo apt-get install -y fish
+        shell: bash
+      - name: Install fisher
+        run: curl -sL https://git.io/fisher | source
+        shell: fish {0}
+      - name: Install package
+        run: fisher install $GITHUB_WORKSPACE
+        shell: fish {0}
