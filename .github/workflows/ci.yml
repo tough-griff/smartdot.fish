@@ -4,12 +4,15 @@ on: push
 
 jobs:
   test:
-    name: Test installation using `fisher`
+    name: Test installation using fisher
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: fish-actions/install-fish@v1
-      - run: |
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install fish
+        uses: fish-actions/install-fish@v1
+      - name: Install and test
+        run: |
           curl -sL https://git.io/fisher | source
           fisher install $GITHUB_WORKSPACE
         shell: fish {0}
