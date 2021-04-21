@@ -1,6 +1,6 @@
 status is-interactive || exit
 
-function _smartdot_fish_key_binding --on-variable fish_key_bindings
+function _smartdot_fish_key_bindings --on-variable fish_key_bindings
     set --query fish_key_bindings[1] || return
 
     test $fish_key_bindings = fish_default_key_bindings &&
