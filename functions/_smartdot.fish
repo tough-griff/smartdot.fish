@@ -1,7 +1,7 @@
 function _smartdot -d 'Autocompletes "..." to "../.."'
     set -l token (commandline -t)
-    set -l quoted (string match -r "[\'\"]" -- "$token" ^/dev/null; or echo "")
-    set -l chars (string sub --start -3 -- "$token" ^/dev/null; or echo "")
+    set -l quoted (string match -r "[\'\"]" -- "$token" ^/dev/null ||  echo "")
+    set -l chars (string sub --start -3 -- "$token" ^/dev/null ||  echo "")
 
     # If token contains a quoted string, we don't replace...
     # ...if the token is simply '..', replace...
