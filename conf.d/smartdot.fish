@@ -12,7 +12,7 @@ end
 
 _smartdot_fish_key_bindings
 
-function _smartdot_uninstall --on-event _smartdot_uninstall
+function _smartdot_uninstall --on-event smartdot_uninstall
     bind --erase "."
     functions --erase (functions --all | string match "_smartdot*")
 end
