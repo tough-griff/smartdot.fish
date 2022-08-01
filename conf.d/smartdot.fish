@@ -1,13 +1,14 @@
 status is-interactive || exit
 
 function _smartdot_fish_key_bindings --on-variable fish_key_bindings
-    set --query fish_key_bindings[1] || return
+    if test $fish_key_bindings = fish_default_key_bindings
+        set --local modes default insert
+    else
+        set --local modes insert default
+    end
 
-    test $fish_key_bindings = fish_default_key_bindings &&
-        set --local mode default insert ||
-        set --local mode insert default
-
-    bind --mode $mode[1] "." _smartdot
+    bind --mode $modes[1] "." _smartdot
+    bind --mode $modes[2] --erase "."
 end
 
 _smartdot_fish_key_bindings
